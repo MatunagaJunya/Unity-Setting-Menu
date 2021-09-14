@@ -1,2 +1,3 @@
 # Unity-Setting-Menu
-Unityno
+Unityの設定の画面を作っています。
+もしいいやり方などあれば教えてください。
