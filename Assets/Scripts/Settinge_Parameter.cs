@@ -56,13 +56,7 @@ public class Settinge_Parameter : MonoBehaviour
 
     private void Awake()
     {
-        //データを呼出
-        using (var fs = new StreamReader(SaveFilePath, System.Text.Encoding.GetEncoding("UTF-8")))
-        {
-            string result = fs.ReadToEnd();
-            Debug.Log(result);
-            Data = JsonUtility.FromJson<Settinge_Data>(result);
-        }
+        Data_Call();
     }
 
     private void Start()
@@ -81,10 +75,24 @@ public class Settinge_Parameter : MonoBehaviour
     {
         string json = JsonUtility.ToJson(Data);
 
-        //Json書き込み
+        //Jsonデータに書き込み
         StreamWriter SW = new StreamWriter(SaveFilePath);
         SW.Write(json);
         SW.Flush();
         SW.Close();
+    }
+
+    /// <summary>
+    /// データの呼び出し
+    /// </summary>
+    public void Data_Call()
+    {
+        //データを呼出
+        using (var fs = new StreamReader(SaveFilePath, System.Text.Encoding.GetEncoding("UTF-8")))
+        {
+            string result = fs.ReadToEnd();
+            Debug.Log(result);
+            Data = JsonUtility.FromJson<Settinge_Data>(result);
+        }
     }
 }
